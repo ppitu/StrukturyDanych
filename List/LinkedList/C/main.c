@@ -5,24 +5,20 @@
 
 int main()
 {
-	struct Node* head = NULL;
-	struct Node* second = NULL;
-	struct Node* third = NULL;
 
-	head = (struct Node*) malloc(sizeof(struct Node));
-	second = (struct Node*) malloc(sizeof(struct Node));
-	third = (struct Node*) malloc(sizeof(struct Node));
+	struct Node *head = NULL;
 
-	head->data = 1;
-	head->next = second;
+	append(&head, 6);
 
-	second->data = 2;
-	second->next = third;
+	push(&head, 7);
 
-	third->data = 3;
-	third->next = NULL;
+	push(&head, 1);
+
+	append(&head, 4);
+
+	insertAfter(head->next, 8);
 
 	printList(head);
-
+	
 	return 0;	
 }
