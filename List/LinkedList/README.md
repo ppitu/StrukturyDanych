@@ -1,22 +1,22 @@
 # Linked List
 
-**Dlaczego Linked List**  
-Wybieramy Linked List dlatego, że tablice mają następujące ograniczenia:  
-**1.** Rozmiar tablicy jest stały: musi więc znać górną granicę liczby elementów z góry. Ponadto tablica zawsze zajmuje tyle samo pamięci niezależnie od ilości elementów znajdujących się w niej.  
-**2.** Wstawienie nowego elementu jest kosztowne ponieważ wymaga przesunięcia reszty elementów. Tak samo jest z usunięciem elementu  
+**Why Linked List**  
+We select the Linked Distance List that the arrays have the following restrictions:  
+**1.** The size of the array is constant: so we need to know the upper limit of the number of elements in advance. Moreover, an array always occupies the same amount of memory regardless of the number of elements in it.   
+**2.** Inserting a new element is expensive because it requires moving the rest of the elements. The same goes for the removal of an element.   
 
-**Przewaga Linked List nad tablicami**  
-**1.** Dynamiczny rozmiar  
-**2.** Latwość wstawiania / usuwania  
+**Advantages over arrays**  
+**1.** Dynamic size  
+**2.** Ease of insertion / deletion  
 
-**Wady Linked List**  
-**1.** Brak losowego dostepu, musimy zawsze zaczynać od początku  
-**2.** Dodatkowe miejsce na wskaźniki  
-**3.** Nie jest przyjazne dla pamięci podręcznej, elementy sa porozrzucane w pamięci głównej  
+**Drawbacks**  
+**1.** Random access is not allowed. We have to access elements sequentially starting from the first node.  
+**2.** Extra memory space for a pointer is required.  
+**3.** Not cache friendlly.  
 
-**Reprezentacja**  
-Lista jest reprezentowana przez wskaźnik do pierwszego elementu, pierwszy element zawiera wskaźnik do kolejnego i tak dalej. Jeśli połaczona jest lista pusta wskaźnik wskazuje na NULL. Każdy węzeł na liście składa się z co najmniej dwóch części:  
-1. dane  
-2. Wskaźnik do następnego węzła  
+**Representation**  
+A linked list is represented by a pointer to the first node of linked list. If the linked list is empty, then the value of the head is NULL. Each node in a list consists od at least two parts:  
+1. Data  
+2. Pointer to the next node  
 
-W C reprezentujemy Liste za pomoca struktur, w pozostałych językach (C++, Java, Python) za pomocą klas.  
+In C, we can represent a nod using structures. In other programming language (C++, Java, Python) we use class.  
