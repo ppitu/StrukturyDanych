@@ -20,3 +20,9 @@ A linked list is represented by a pointer to the first node of linked list. If t
 2. Pointer to the next node  
 
 In C, we can represent a nod using structures. In other programming language (C++, Java, Python) we use class.  
+
+**Functions**  
+
+`void push(T data)` The function added an elemets before the head. Newly added node becomes the new
+ head of Linked List.  
+In C functions has a special Node*\* argumnet `void push(Node** headref, T data)` that passes the reference to the function.  
