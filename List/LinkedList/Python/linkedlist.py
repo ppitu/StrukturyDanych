@@ -32,5 +32,27 @@ class LinkedList:
 	def printList(self):
 		temp = self.head
 		while(temp):
-			print(temp.data)
+			print(temp.data, end=" ")
 			temp = temp.next
+
+	def deleteNode(self, data):
+		temp = self.head
+		
+		if temp is not None:
+			if temp.data == data:
+				self.head = temp.next
+				temp = None
+				return
+		
+		while temp is not None:
+			if temp.data == data:
+				break
+			prev = temp
+			temp = temp.next
+
+		if temp == None:
+			return
+
+		prev.next = temp.next
+		
+		temp = None

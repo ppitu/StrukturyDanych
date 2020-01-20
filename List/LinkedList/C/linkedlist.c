@@ -206,3 +206,143 @@ void printMiddle(struct Node* head)
 		printf("The middle element is [%d]\n", slow_ptr->data);
 	}
 }
+
+//removes duplicates from a sorted list
+void removeDuplicatesSort(struct Node* head)
+{
+	struct Node* current = head;
+
+	struct Node* next_next;
+
+	if(current == NULL)
+		return;
+
+	while(current->next != NULL)
+	{
+		if(current->data == current->next->data)
+		{
+			next_next = current->next->next;
+			free(current->next);
+			current->next = next_next;
+		}
+		else
+		{
+			current = current->next;
+		}
+	}
+}
+
+//removes duplicates from a unsorted linked list
+void removeDuplicates(struct Node *head)
+{
+	struct Node *ptr1, *ptr2, *dup;
+	ptr1 = head;
+
+	while(ptr1 != NULL && ptr1->next != NULL)
+	{
+		ptr2 = ptr1;
+
+		while(ptr2->next != NULL)
+		{
+			if(ptr1->data == ptr2->next->data)
+			{
+				dup = ptr2->next;
+				ptr2->next = ptr2->next->next;
+				free(dup);
+			}
+			else
+			{
+				ptr2 = ptr2->next;
+			}
+		}
+
+		ptr1 = ptr1->next;
+	}
+}
+
+//return the last node of the list
+struct Node *getTail(struct Node *cur)
+{
+	while(cur != NULL && cur->next != NULL)
+		cur = cur->next;
+
+	return cur;
+}
+
+//partitons the list talking the last element as the pivot
+struct Node* partiton(struct Node *head, struct Node* end, struct Node** newHead, struct Node **newEnd)
+{
+	struct Node *pivot = end;
+	struct Node *prev = NULL;
+	struct Node *cur = head;
+	struct Node *tail = pivot;
+
+	while(cur != pivot)
+	{
+		if(cur->data < pivot->data)
+		{
+			if((*newHead) == NULL)
+				(*newHead) = cur;
+
+			prev = cur;
+			cur = cur->next;
+		}
+		else
+		{
+			if(prev)
+				prev->next = cur->next;
+
+			struct Node *temp = cur->next;
+			cur->next = NULL;
+			tail->next = cur;
+			tail = cur;
+			cur = temp;
+		}
+	}
+
+	if((*newHead) == NULL)
+		(*newHead) = pivot;
+
+	(*newEnd) = tail;
+
+	return pivot;
+}
+
+//here the sorting happens exclusive of the end node
+struct Node *quickSortRecur(struct Node *head, struct Node *end)
+{
+	if(!head || head == end)
+		return head;
+
+	struct Node *newHead = NULL;
+	struct Node *newEnd = NULL;
+
+	struct Node *pivot = partiton(head, end, &head, &end);
+	
+	if(newHead != pivot)
+	{
+		struct Node *temp = newHead;
+
+		while(temp->next != pivot)
+			temp = temp->next;
+
+		temp->next = NULL;
+
+		newHead = quickSortRecur(newHead, temp);
+
+		temp = getTail(newHead);
+		temp->next = pivot;
+	}
+	
+	pivot->next = quickSortRecur(pivot->next, newEnd);
+
+	return newHead;
+
+}
+
+//main function of quick sort
+void quickSort(struct Node **head)
+{
+	(*head) = quickSortRecur(*head, getTail(*head));
+	return;
+}

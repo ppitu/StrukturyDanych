@@ -11,6 +11,7 @@ class LinkedList
 		void printList();
 		void push(T );
 		void append(T );
+		void deleteNode(T );
 
 	private:
 
@@ -64,6 +65,33 @@ void LinkedList<T>::append(T data)
 		last = last->next;
 
 	last->next = newnode;
+}
+
+template <typename T>
+void LinkedList<T>::deleteNode(T data)
+{
+	typename LinkedList<T>::Node *temp = head;
+	typename LinkedList<T>::Node *prev;
+
+	if(temp != NULL && temp->data == data)
+	{
+		head = temp->next;
+		delete(temp);
+		return;
+	}
+
+	while(temp != NULL && temp->data != data)
+	{
+		prev = temp;
+		temp = temp->next;
+	}
+
+	if(temp == NULL)
+		return;
+
+	prev->next = temp->next;
+
+	delete(temp);
 }
 
 #endif //LINKEDLIST_HPP
